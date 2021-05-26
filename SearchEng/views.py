@@ -6,7 +6,7 @@ from django.utils import timezone
 from django.views import generic
 from django.views.generic import FormView
 
-from .models import SearchQuery
+from .models import SearchQuery, InfoResults
 from .forms import SearchForm
 
 # Create your views here. 
@@ -28,11 +28,14 @@ class SearchFormView(FormView):
     template_name = 'SearchEng/search_form.html'
 
     def get_success_url(self):
-        return reverse('index')
+        return reverse('info')
     
     # def form_valid(self, form):
-
 
 class IndexView(generic.ListView):
     template_name = 'SearchEng/index.html'
     model = SearchQuery
+
+class PageInfoView(generic.ListView):
+    template_name = 'SearchEng/page_info.html'
+    model = InfoResults
